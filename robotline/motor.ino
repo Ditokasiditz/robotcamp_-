@@ -1,54 +1,61 @@
 void Motor(int spl,int spr)
 {
-  pinMode(10,OUTPUT);//pwmL
-  pinMode(7,OUTPUT);
-  pinMode(8,OUTPUT);
+  #define pwmL 10
+  #define ML1 7
+  #define ML2 8
+  #define pwmR 11
+  #define RM1 9
+  #define RM2 12
+
+  pinMode(pwmL,OUTPUT);//pwmL
+  pinMode(ML1,OUTPUT);
+  pinMode(ML2,OUTPUT);
  
-  pinMode(11,OUTPUT);//pwmR
-  pinMode(9,OUTPUT);
-  pinMode(12,OUTPUT);
+  pinMode(pwmR,OUTPUT);//pwmR
+  pinMode(RM1,OUTPUT);
+  pinMode(RM2,OUTPUT);
   //spl > 100, spr > 100  limit motor speed for 100
   if (spl>100)
-  spl=100;
+    spl=100;
   else if (spr>100)
-  spr=100;
+    spr=100;
   //Motor Left
   if(spl>0)
   {
-    analogWrite(10,(spl*255)/100);
-    digitalWrite(7,HIGH);
-    digitalWrite(8,LOW);
+    analogWrite(pwmL,(spl*255)/100);
+    digitalWrite(ML1,HIGH);
+    digitalWrite(ML2,LOW);
   }
   else if (spl<0)
   {
-    analogWrite(10,(-spl*255)/100);
-    digitalWrite(7,LOW);
-    digitalWrite(8,HIGH);
+    analogWrite(pwmL,(-spl*255)/100);
+    digitalWrite(ML1,LOW);
+    digitalWrite(ML2,HIGH);
   }
   else
   {
-    analogWrite(10,(spl*255)/100);    //case for stop motor
-    digitalWrite(7,LOW);
-    digitalWrite(8,LOW);
+    analogWrite(pwmL,(spl*255)/100);    //case for stop motor
+    digitalWrite(ML1,LOW);
+    digitalWrite(ML2,LOW);
   }
 
   //Motor Right
   if(spr>0)
   {
-    analogWrite(11,(spr*255)/100);
-    digitalWrite(9,HIGH);
-    digitalWrite(12,LOW);
+    analogWrite(pwmR,(spr*255)/100);
+    digitalWrite(RM1,HIGH);
+    digitalWrite(RM2,LOW);
   }
   else if (spl<0)
   {
-    analogWrite(11,(-spr*255)/100);
-    digitalWrite(9,LOW);
-    digitalWrite(12,HIGH);
+    analogWrite(pwmR,(-spr*255)/100);
+    digitalWrite(RM1,LOW);
+    digitalWrite(RM2,HIGH);
   }
   else
   {
-    analogWrite(11,(spr*255)/100);    //case for stor motor
-    digitalWrite(9,LOW);
-    digitalWrite(12,LOW);
+    analogWrite(pwmR,(spr*255)/100);    //case for stor motor
+    digitalWrite(RM1,LOW);
+    digitalWrite(RM2,LOW);
   }
 }
