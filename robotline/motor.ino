@@ -1,11 +1,6 @@
 void Motor(int spl,int spr)
 {
-  #define pwmL 10
-  #define ML1 7
-  #define ML2 8
-  #define pwmR 11
-  #define RM1 9
-  #define RM2 12
+  
 
   pinMode(pwmL,OUTPUT);//pwmL
   pinMode(ML1,OUTPUT);
