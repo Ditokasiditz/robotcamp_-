@@ -1,13 +1,17 @@
 void Detect_ss()
 {
-  Serial.print("Left 2 :");
-  Serial.print(analogRead(2))
-  Serial.print("Left 3 :");
-  Serial.print(analogRead(3))
-  Serial.print("Mid 4 :");
-  Serial.print(analogRead(4))
-  Serial.print("Right 5 :");
-  Serial.print(analogRead(5))
-  Serial.print("Right 6 :");
-  Serial.println(analogRead(6))
+  #define LS A1
+  #define MS A2
+  #define RS A3
+  pinMode(LS,INPUT);
+  pinMode(MS,INPUT);
+  pinMode(RS,INPUT);
+  Serial.print("Left_sensor:");
+  Serial.print(analogRead(LS));
+  
+  Serial.print("Mid_sensor:");
+  Serial.print(analogRead(MS));
+  
+  Serial.print("Right_sensor:");
+  Serial.println(analogRead(RS));
 }
