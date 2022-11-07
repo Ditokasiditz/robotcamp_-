@@ -1,7 +1,5 @@
 void Motor(int spl,int spr)
 {
-  
-
   pinMode(pwmL,OUTPUT);//pwmL
   pinMode(ML1,OUTPUT);
   pinMode(ML2,OUTPUT);
@@ -9,11 +7,13 @@ void Motor(int spl,int spr)
   pinMode(pwmR,OUTPUT);//pwmR
   pinMode(RM1,OUTPUT);
   pinMode(RM2,OUTPUT);
+  
   //spl > 100, spr > 100  limit motor speed for 100
   if (spl>100)
     spl=100;
   else if (spr>100)
     spr=100;
+
   //Motor Left
   if(spl>0)
   {
