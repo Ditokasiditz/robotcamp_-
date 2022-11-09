@@ -20,25 +20,10 @@ void setup() {
 
 //LED pin
 #define LED A5
-
+  
 void loop() 
 {
-  FF(spl,spr);
-  Detect_ss();
-
-
+  read_sensor_values();
+  Calculate_PID();
+  run_case(spl,spr);
 }
-
-
-void LED_blink()
-{
-  analogWrite(LED,700);
-  delay(500);
-  analogWrite(LED,0);
-  delay(500);
-}
-
-
-
-
-

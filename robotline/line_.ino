@@ -1,4 +1,4 @@
-void FF(int spl, int spr)
+void run_case(int spl, int spr)
 {
   while(1)
   {
@@ -17,7 +17,7 @@ void FF(int spl, int spr)
   else if ((analogRead(LS)>800) && (analogRead(RS)>800) && (analogRead(MS)>800) )
     {
      Motor(0,0);
-     delay(5000);
+     delay(100);
      break;
     }
     
