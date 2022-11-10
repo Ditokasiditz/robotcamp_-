@@ -16,6 +16,13 @@ int spl=100,spr=100;
 
 void setup() {
   Serial.begin(9600);
+
+  //start
+  // Motor(100,100);
+  // delay(700);
+  // do{
+  //   Motor(100,0);
+  // }while(analogRead(LS)<250 && analogRead(MS)>700 && analogRead(RS)<250);
 }
   
 void loop() 
@@ -35,17 +42,18 @@ void run_case(int spl, int spr)
   }
   else if ( (analogRead(LS)>600) && (analogRead(RS)<250) )   //turn left
   {
-    Motor(0,spr);
+    Motor(20,spr);
   }
   else if ((analogRead(LS)<250) && (analogRead(RS)>600) )    //turn right
   {
-    Motor(spl,0);
+    Motor(spl,20);
   }
   else if ((analogRead(LS)>600) && (analogRead(RS)>600) && (analogRead(MS)>600) )
     {
-     Motor(0,0);
-     delay(100);
-     break;
+      delay(100);
+      Motor(0,0);
+      delay(100);
+      break;
     } 
   }
   Motor(0,0);

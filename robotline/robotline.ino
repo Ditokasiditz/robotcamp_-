@@ -16,7 +16,7 @@ int spl=100,spr=100;
 
 void setup() {
   Serial.begin(9600);
-} 
+}  
 
 //LED pin
 #define LED A5
