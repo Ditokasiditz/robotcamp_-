@@ -82,7 +82,7 @@ void run_case(int spl, int spr)
   }
   else if ((analogRead(LS)>600 && analogRead(RS)>600) && (analogRead(MS)>600) && i==1) //เจอดำ ช้าตอนโค้งแรก
   {
-    time2=millis()
+    time2=millis();
     if(time2-time1>8000){
       spl=65;
       spr=65;
@@ -92,7 +92,8 @@ void run_case(int spl, int spr)
     break;
     
   }
-  else if( analogRead(RS)>600 && (analogRead(MS)>600 || analogRead(MS)< 250) && analogRead(LS)<250 && i==2)
+  else if(( analogRead(RS)>600 && (analogRead(MS)>600 || analogRead(MS)< 250) && analogRead(LS)<250 && i==2)
+         ||  (analogRead(MS)>600 && (analogRead(LS)<250 || analogRead(LS)>600) && (analogRead(RS)<250 || analogRead(RS)>600)))
 //เจอดำ ช้าตอนโค้งแรก
   {
     time2=millis();
