@@ -20,7 +20,7 @@ void Calculate_PID()
   Serial.print(previous_error);
   Serial.print(' ');
   Serial.println();
-  delay(500);
+  delay(10);
   
 }
   
