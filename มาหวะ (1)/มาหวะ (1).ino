@@ -51,10 +51,7 @@ void loop() {
 
 void run_case(int spl, int spr) {
 
-
-
-  while (1) {  //white state
-
+  while (1) {                                                                        //white state
     if ((analogRead(LS) < 250) && (analogRead(MS) > 600) && (analogRead(RS) < 250))  //ขาว ดำ ขาว
     {
       Motor(spl, spr);
@@ -64,7 +61,7 @@ void run_case(int spl, int spr) {
     } else if ((analogRead(LS) < 250) && (analogRead(RS) > 600))  //turn right
     {
       Motor(spl, 15);
-    } else if ((analogRead(LS) > 600 && analogRead(RS) > 600) && (analogRead(MS) > 600) && i == 0)      //เขตชะลอ
+    } else if ((analogRead(LS) > 600 && analogRead(RS) > 600) && (analogRead(MS) > 600) && i == 0)  //เขตชะลอ
     {
       Motor(27, 27);
       delay(1000);
@@ -72,14 +69,14 @@ void run_case(int spl, int spr) {
       spr = 27;
       i++;
       break;
-    }else if ((analogRead(LS) > 600 && analogRead(RS) > 600) && (analogRead(MS) > 600) && i == 1) 
-    {
-      spl=60;spr=60;
+    } else if ((analogRead(LS) > 600 && analogRead(RS) > 600) && (analogRead(MS) > 600) && i == 1) {
+      spl = 60;
+      spr = 60;
 
       Motor(40, 40);
       delay(1500);
 
-      Motor(0, 0);      //บ้าน1
+      Motor(0, 0);  //บ้าน1
       delay(3400);
 
       set_mid();
@@ -87,14 +84,14 @@ void run_case(int spl, int spr) {
       Motor(40, 40);
       delay(1100);
 
-      digitalWrite(Buzzer, HIGH);       //ทางม้าลาย
+      digitalWrite(Buzzer, HIGH);  //ทางม้าลาย
       Motor(0, 0);
       delay(3000);
       i++;
     }
 
-    if ((analogRead(LS) > 600) && ((analogRead(MS) > 600)) && (analogRead(RS) > 600) && i == 2) {   //วิ่งถึงทางเบี่ยง
-      Motor(40, 40); 
+    if ((analogRead(LS) > 600) && ((analogRead(MS) > 600)) && (analogRead(RS) > 600) && i == 2) {  //วิ่งถึงทางเบี่ยง
+      Motor(40, 40);
       delay(3300);
       digitalWrite(Buzzer, LOW);
       delay(2000);
@@ -104,14 +101,14 @@ void run_case(int spl, int spr) {
       i++;
     }
 
-    if (i == 3) {     //หมุนหลบทางเบี่ยง
+    if (i == 3) {  //หมุนหลบทางเบี่ยง
       Motor(-30, 80);
       delay(500);
 
       Motor(40, 40);
       delay(700);
 
-      while (analogRead(LS) < 200 && analogRead(MS) < 200 && analogRead(RS) < 200) {    
+      while (analogRead(LS) < 200 && analogRead(MS) < 200 && analogRead(RS) < 200) {
         Motor(70, 70);
       }
       i++;
@@ -137,7 +134,7 @@ void run_case(int spl, int spr) {
       }
 
 
-      while (i == 5) {      //white state again
+      while (i == 5) {                                                                   //white state again
         if ((analogRead(LS) < 250) && (analogRead(MS) > 600) && (analogRead(RS) < 250))  //ขาว ดำ ขาว
         {
           Motor(spl, spr);
@@ -243,7 +240,7 @@ void run_case(int spl, int spr) {
 
 
 
-void set_mid() {      
+void set_mid() {
   while (analogRead(LS) < 200 && analogRead(MS) < 200) {
     Motor(-20, 80);
   }
