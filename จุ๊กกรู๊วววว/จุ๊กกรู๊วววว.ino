@@ -28,28 +28,19 @@ int i=0;
 
 
 
-void setup() {
+void setup()
+{
   Serial.begin(9600);
-
   //start
-  Motor(100,100); 
-  delay(850);
-  Motor(60,0);
-  delay(650);
-  Motor(0,0);
-  
+  Motor(70,70);
 
-
-
-   
 }
   
 void loop() 
 {
-  read_sensor_values();
-  Calculate_PID();
+  // read_sensor_values();
+  // Calculate_PID();
   run_case(spl,spr);
-  
 }
 
 
@@ -59,41 +50,57 @@ void run_case(int spl, int spr)
   
   while(1)
   {
-  if((analogRead(LS)<250) &&  (analogRead(MS)>600)  && (analogRead(RS)<250) )  //ขาว ดำ ขาว
+  int left  = analogRead(LS);
+  int mid = analogRead(MS);
+  int right = analogRead(RS);
+  if((left<250) &&  (mid>600)  && (right<250) )  //ขาว ดำ ขาว
   {
     Motor(spl,spr);
   }
-  else if ( (analogRead(LS)>600) && (analogRead(RS)<250) )   //turn left
+  else if ( (left>600) && (right<250) )   //turn left
   {
-    Motor(15,spr);
+    Motor(20,spr);
   }
-  else if ((analogRead(LS)<250) && (analogRead(RS)>600) )    //turn right
+  else if ((left<250) && (right>600) )    //turn right
   {
-    Motor(spl,15);
+    Motor(spl,20);
   }
-  else if ((analogRead(LS)>600 && analogRead(RS)>600) && (analogRead(MS)>600) && i==0) //เจอดำ ช้าตอนโค้งแรก
-  {
-    Motor(30,30);
+  else if ((left>600 && right>600) && (mid>600) && i==0)
+  { 
+
     delay(1000);
-    spl=30;
-    spr=30;
+    Motor(0,0);
+    Motor(65,-20);
+    delay(500);
+    do
+    {
+    Motor(65,-20);
+    }while(mid<200);
     i++;
-    time1=millis();
   }
-  else if ((analogRead(LS)>600 && analogRead(RS)>600) && (analogRead(MS)>600) && i==1) //เจอดำ ช้าตอนโค้งแรก
+  else if ((left>600 && right>600) && (mid>600) && i==1) //เจอดำ ช้าตอนโค้งแรก
+  {
+    time1=millis();
+    Motor(30,30);
+    spl=25;
+    spr=25;
+    i++;
+  }
+  else if ((left>600 && right>600) && (mid>600) && i==2) //เจอดำ ช้าตอนโค้งแรก
   {
     time2=millis();
-    if(time2-time1>8000){
+    if(time2-time1>10000){
       spl=65;
       spr=65;
       i++;
       time1=millis();
     }
+    else
+      Motor(0,45);
     break;
     
   }
-  else if(( analogRead(RS)>600 && (analogRead(MS)>600 || analogRead(MS)< 250) && analogRead(LS)<250 && i==2)
-         ||  (analogRead(MS)>600 && (analogRead(LS)<250 || analogRead(LS)>600) && (analogRead(RS)<250 || analogRead(RS)>600)))
+  else if((left>600||left<250) && mid>600 && right>600 && i==3)
 //เจอดำ ช้าตอนโค้งแรก
   {
     time2=millis();
@@ -102,15 +109,24 @@ void run_case(int spl, int spr)
       Motor(0,0);
       delay(5000);
       i++;
+      time1=millis();
     }
     
   }
+  // else if((left>600||left<250) && mid>600 && right>600 && i==3)
+  // {
+  //   time2=millis();
+  //   if(time2-time1>3000)
+  // }
+
   else
     Motor(spl,spr);
+  
   }
   Motor(0,0);
   delay(10);
 }
+
 
 
 

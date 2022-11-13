@@ -23,7 +23,5 @@ void setup() {
   
 void loop() 
 {
-  read_sensor_values();
-  Calculate_PID();
-  run_case(spl,spr);
+  Detect_ss();
 }
